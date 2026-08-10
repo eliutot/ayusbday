@@ -22,9 +22,11 @@
       --text-dim:#a29e97;
     }
     *{box-sizing:border-box;}
-    body{
-      cursor:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACHklEQVR4nO2UTUhVURDH556Z/9z7Aq0oECrKRS2CIFq0MPSZLdpWFm0i3FdQWItSy0yzWkWLaFdEtKtFkVF+PANbBS2ijIIKQYKgwG9Fn/dMK0WQ6F0/N/e3PGf+8xsOhyFabYoc1+xiblhJZynzvq2i2dmDvcwN1SyT+xn1yy0/Jug8KOjaw1HFqKgT5FsE3XuA8qUWnxA9e0MQ1wja/1m0naWslTH1gsU3IXy9FOIdotnHCLvaGPFJwdOCQrdFc19ZrAcaX4CeXqj8roaXP4vaW4G/iLAyUbhOtP07ix9iWBuizhIJKwrNHkaUfY+wZ5zFcqLxEYmSyWc4Dz3zQRCPE9k76HQtwiv/y7QgetIv8GNE9lzws3Tub18IxxFlXwqmfxBZjsUaNcztVJ33GlWaqbgJzfc6tn7n7D40tyjxXDYIyh+Jdnc4Z3eIrB7qj2pmdndUa/SqCfAPieyNY7sk6Ci0d5BkkFpB5yYfH5j0Pphat96aBgccEdH14rU+GB4K1LH1Otf8YDrfWGhPl2SAZ+abR4LAQERjmYyfOR8tKs4HRNQXBHESORGRJCkuCdzuSjO3kYhGxsd485ZtA2uAT0W/f+kQEU2QcZJ+C+Iqoo5hEZsgsi9E9pHIBomsj8WfEj237AMQEd3S8NofEcsTWZ7IBhlWB12SzVkw9zRT+Q1q/YBvhdauqHyGMtXsIYSLWzQpKSkpKSkpq81f/ueqWtUczPYAAAAASUVORK5CYII=") 0 0, auto;
+    
+    html, body {
+      cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACHklEQVR4nO2UTUhVURDH556Z/9z7Aq0oECrKRS2CIFq0MPSZLdpWFm0i3FdQWItSy0yzWkWLaFdEtKtFkVF+PANbBS2ijIIKQYKgwG9Fn/dMK0WQ6F0/N/e3PGf+8xsOhyFabYoc1+xiblhJZynzvq2i2dmDvcwN1SyT+xn1yy0/Jug8KOjaw1HFqKgT5FsE3XuA8qUWnxA9e0MQ1wja/1m0naWslTH1gsU3IXy9FOIdotnHCLvaGPFJwdOCQrdFc19ZrAcaX4CeXqj8roaXP4vaW4G/iLAyUbhOtP07ix9iWBuizhIJKwrNHkaUfY+wZ5zFcqLxEYmSyWc4Dz3zQRCPE9k76HQtwiv/y7QgetIv8GNE9lzws3Tub18IxxFlXwqmfxBZjsUaNcztVJ33GlWaqbgJzfc6tn7n7D40tyjxXDYIyh+Jdnc4Z3eIrB7qj2pmdndUa/SqCfAPieyNY7sk6Ci0d5BkkFpB5yYfH5j0Pphat96aBgccEdH14rU+GB4K1LH1Otf8YDrfWGhPl2SAZ+abR4LAQERjmYyfOR8tKs4HRNQXBHESORGRJCkuCdzuSjO3kYhGxsd485ZtA2uAT0W/f+kQEU2QcZJ+C+Iqoo5hEZsgsi9E9pHIBomsj8WfEj237AMQEd3S8NofEcsTWZ7IBhlWB12SzVkw9zRT+Q1q/YBvhdauqHyGMtXsIYSLWzQpKSkpKSkpq81f/ueqWtUczPYAAAAASUVORK5CYII=") 0 0, auto;
     }
+    
     html,body{margin:0;padding:0;}
     body{
       background:var(--bg);
@@ -37,7 +39,6 @@
     h1,h2,h3,.hand{font-family:'Courier New', Courier, monospace;font-weight:700;letter-spacing:.5px;text-transform:lowercase;}
     a{color:inherit;}
 
-    /* ---------- floating ambient bits ---------- */
     .stars{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;}
     .stars span{
       position:absolute;width:3px;height:3px;background:var(--border);
@@ -45,17 +46,18 @@
     }
     @keyframes twinkle{0%,100%{opacity:.15;}50%{opacity:.7;}}
 
-    /* ---------- banner ---------- */
     #banner{
-      position:fixed;inset:0;z-index:100;
-      display:flex;align-items:center;justify-content:center;
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       background:var(--bg);
-      opacity:0;animation:fadeIn 1.6s ease forwards;
       padding:24px;
+      opacity:1;
+      visibility:visible;
     }
-    @keyframes fadeIn{to{opacity:1;}}
-    #banner.leaving{animation:fadeOut .9s ease forwards;}
-    @keyframes fadeOut{to{opacity:0;visibility:hidden;}}
     .banner-window{
       width:min(760px,92vw);
       max-height:88vh;
@@ -91,7 +93,6 @@
     }
     .enter-btn:hover{background:var(--accent);color:#111;}
 
-    /* ---------- shell / window frame ---------- */
     #app{
       position:relative;z-index:1;
       max-width:1000px;margin:34px auto;padding:0 18px 60px;
@@ -130,7 +131,6 @@
     .page h2{font-size:28px;margin:0 0 4px;}
     .subtext{color:var(--text-dim);margin:0 0 26px;font-size:12.5px;}
 
-    /* ---------- countdown ---------- */
     .countdown-grid{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
     .cd-box{
       flex:1;min-width:90px;text-align:center;
@@ -159,7 +159,6 @@
       margin-top:14px;min-height:26px;font-size:14px;color:var(--accent);
     }
 
-    /* ---------- guestbook ---------- */
     .gb-form{
       border:2px solid var(--border-dim);border-radius:14px;padding:20px;
       background:var(--panel-2);margin-bottom:28px;
@@ -190,7 +189,6 @@
     .gb-entry img{max-width:180px;border-radius:8px;margin-top:8px;display:block;}
     .gb-empty{color:var(--text-dim);font-size:14px;font-style:italic;}
 
-    /* ---------- links ---------- */
     .link-section{margin-bottom:34px;}
     .link-section h3{font-size:18px;margin:0 0 4px;}
     .link-note{color:var(--text-dim);font-size:11.5px;margin:0 0 14px;}
@@ -208,18 +206,11 @@
     .cover img{width:100%;height:100%;object-fit:cover;display:block;}
     .card .title{padding:8px 10px;font-size:13px;color:var(--text);}
 
-    /* ---------- extras ---------- */
     .extras-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:22px;}
     @media (max-width:700px){.extras-grid{grid-template-columns:1fr;}}
     .extras-box{border:2px solid var(--border-dim);border-radius:14px;padding:18px;background:var(--panel-2);}
     .extras-box h3{font-size:17px;margin:0 0 10px;}
     .spotify-embed iframe{width:100%;border-radius:10px;border:none;}
-    .interest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-bottom:22px;}
-    .interest{
-      border:1px solid var(--border-dim);border-radius:10px;padding:12px 8px;text-align:center;
-      font-size:13px;background:#0d0d10;
-    }
-    .interest .ic{font-size:22px;display:block;margin-bottom:4px;}
     .word-input{display:flex;gap:8px;margin-bottom:14px;}
     .word-input input{flex:1;background:#0d0d10;border:1px solid var(--border-dim);border-radius:8px;padding:8px 12px;color:var(--text);font-family:inherit;}
     .word-input button{background:var(--accent);border:none;color:#111;font-weight:600;border-radius:8px;padding:8px 16px;cursor:pointer;}
@@ -229,7 +220,6 @@
       padding:5px 14px;font-size:13px;background:var(--accent-soft);
     }
 
-    /* ---------- gallery ---------- */
     .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;}
     .photo-card{
       position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;
@@ -242,12 +232,8 @@
       font-size:10px;padding:3px 7px;text-decoration:none;opacity:0;transition:.2s;
     }
     .photo-card:hover .save-btn{opacity:1;}
-    .photo-card.empty{
-      display:flex;align-items:center;justify-content:center;color:var(--text-dim);
-      font-size:11px;text-align:center;padding:8px;border-style:dashed;cursor:default;
-    }
     .lightbox{
-      position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;
+      position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:10000;
       display:none;align-items:center;justify-content:center;padding:30px;
     }
     .lightbox.open{display:flex;}
@@ -259,7 +245,6 @@
       padding:8px 20px;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;
     }
 
-    /* ---------- trigger pills (gallery + drawing) ---------- */
     .trigger-pill{
       margin-top:16px;display:inline-flex;align-items:center;gap:6px;
       font-family:'Courier New',monospace;font-size:13px;color:var(--accent);
@@ -272,8 +257,6 @@
     .drawing-page{max-width:520px;text-align:center;margin:0 auto;}
     .drawing-page img{max-width:100%;border-radius:12px;margin-bottom:16px;border:2px solid var(--border-dim);}
     .drawing-page p.caption{font-family:'Courier New',monospace;font-size:14px;color:var(--text-dim);}
-
-    footer{text-align:center;color:var(--border-dim);font-size:12px;padding:20px 0 0;}
 
     ::-webkit-scrollbar{width:8px;}
     ::-webkit-scrollbar-thumb{background:var(--border-dim);border-radius:4px;}
@@ -297,7 +280,7 @@ ALSSOSOO besides allat i just wanna say you're an unc neow and u can do hella th
 
 you are a truly great, caring, understanding and loving person and u desevre more than u think ^^ i wish i could get u even more gifts but im not there,
 
-but guess what: <b>im coming back the same time as you!!</b> its finally confirmed i have a big chance of going hehe, we havent booked yet but we will soon, maybe then we can do all the things you wanted to do <3
+but guess what: <b>im coming back the same time as you!!</b> its finally confirmed i have a big chance of going hehe, we havent booked yet but we will soon, maybe then we can do all the things you wanted to do &lt;3
     </div>
     <button class="enter-btn" id="enterBtn">click here after done reading →</button>
   </div>
@@ -416,7 +399,7 @@ but guess what: <b>im coming back the same time as you!!</b> its finally confirm
 /* ---------------- supabase initialization ---------------- */
 const SUPABASE_URL = "https://hgvvcvqcqvtjzpfcewzu.supabase.co";
 const SUPABASE_KEY = "sb_publishable_rroAVePkCVj65L7o_VyeEQ_cpUWO8pn";
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const dbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* ---------------- ambient stars ---------------- */
 const starsEl = document.getElementById('stars');
@@ -428,27 +411,29 @@ for(let i=0;i<40;i++){
   starsEl.appendChild(s);
 }
 
-const bannerEl=document.getElementById('banner');
+const bannerEl = document.getElementById('banner');
+const appEl = document.getElementById('app');
 
 function closeBanner(){
-  bannerEl.style.transition = 'opacity 0.4s ease, visibility 0.4s ease';
+  bannerEl.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
   bannerEl.style.opacity = '0';
   bannerEl.style.visibility = 'hidden';
+  
   setTimeout(() => {
     bannerEl.style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-  }, 400);
+    appEl.style.display = 'block';
+  }, 300);
 }
 
 function openBanner(){
-  document.getElementById('app').style.display='none';
-  bannerEl.style.animation='none';
-  bannerEl.style.display='flex';
-  bannerEl.style.visibility='visible';
+  appEl.style.display = 'none';
+  bannerEl.style.display = 'flex';
+  bannerEl.style.visibility = 'visible';
   void bannerEl.offsetWidth;
-  bannerEl.style.transition='opacity .6s ease';
-  bannerEl.style.opacity='1';
+  bannerEl.style.transition = 'opacity 0.3s ease';
+  bannerEl.style.opacity = '1';
 }
+
 document.getElementById('enterBtn').addEventListener('click', closeBanner);
 document.getElementById('birthdayTab').addEventListener('click', openBanner);
 
@@ -522,8 +507,9 @@ Object.entries(HANGOUTS).forEach(([label,data])=>{
   let cells='';
   for(let i=0;i<data.startWeekday;i++) cells+='<div class="day empty"></div>';
   for(let d=1; d<=data.days; d++){
-    const isMark=data.marks[d];
-    cells+=`<div class="day ${isMark?'hangout':''}" ${isMark?`data-note="${isMark}"`:''}>${d}</div>`;
+    const isMark = data.marks[d];
+    const safeNote = isMark ? isMark.replace(/"/g, '&quot;') : '';
+    cells+=`<div class="day ${isMark?'hangout':''}" ${isMark?`data-note="${safeNote}"`:''}>${d}</div>`;
   }
   monthEl.innerHTML=`<h4>${label}</h4><div class="grid7">${cells}</div>`;
   monthsWrap.appendChild(monthEl);
@@ -539,7 +525,7 @@ const gbEntries=document.getElementById('gbEntries');
 
 async function loadGuestbook(){
   try{
-    const { data: entries, error } = await supabase
+    const { data: entries, error } = await dbClient
       .from('guestbook')
       .select('*')
       .order('ts', { ascending: false });
@@ -552,16 +538,21 @@ async function loadGuestbook(){
       return;
     }
     
-    entries.forEach(en=>{
-      const div=document.createElement('div');
-      div.className='gb-entry';
-      div.innerHTML=`
+    entries.forEach(en => {
+      const div = document.createElement('div');
+      div.className = 'gb-entry';
+      
+      const safeName = en.name ? en.name.replace(/</g, '&lt;').replace(/"/g, '&quot;') : 'Someone';
+      const safeMsg = en.msg ? en.msg.replace(/</g, '&lt;') : '';
+      const safeGif = en.gif ? en.gif.replace(/"/g, '%22').replace(/</g, '%3C') : '';
+
+      div.innerHTML = `
         <div class="who">
-          <div class="pfp">${en.anon ? '?' : (en.name?.[0]?.toUpperCase()||'♡')}</div>
-          <div class="name">${en.anon ? 'Anonymous' : (en.name || 'Someone')}</div>
+          <div class="pfp">${en.anon ? '?' : (safeName[0]?.toUpperCase() || '♡')}</div>
+          <div class="name">${en.anon ? 'Anonymous' : safeName}</div>
         </div>
-        <div class="msg">${en.msg.replace(/</g,'&lt;')}</div>
-        ${en.gif ? `<img src="${en.gif}" alt="gif" onerror="this.style.display='none'">` : ''}
+        <div class="msg">${safeMsg}</div>
+        ${safeGif ? `<img src="${safeGif}" alt="gif" onerror="this.style.display='none'">` : ''}
       `;
       gbEntries.appendChild(div);
     });
@@ -579,7 +570,7 @@ document.getElementById('gbSubmit').addEventListener('click', async ()=>{
   if(!msg) return;
   
   try{
-    const { error } = await supabase
+    const { error } = await dbClient
       .from('guestbook')
       .insert([{ name, anon, msg, gif, ts: Date.now() }]);
 
@@ -738,7 +729,7 @@ function renderGallery(){
   galleryGrid.innerHTML=PHOTOS.map((p,i)=>`
     <div class="photo-card" onclick="openLightbox(${i})">
       <img src="${p.img}" alt="${p.caption||'us'}">
-      <a class="save-btn" href="${p.img}" download onclick="event.stopPropagation()">save</a>
+      <a class="save-btn" href="${p.img}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">view</a>
     </div>
   `).join('');
 }
@@ -749,7 +740,7 @@ lightboxEl.className='lightbox';
 lightboxEl.innerHTML=`
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img id="lightboxImg" src="">
-  <a id="lightboxSave" class="lightbox-save" href="#" download>save this photo</a>
+  <a id="lightboxSave" class="lightbox-save" href="#" target="_blank" rel="noopener noreferrer">view this photo</a>
 `;
 document.body.appendChild(lightboxEl);
 function openLightbox(i){
