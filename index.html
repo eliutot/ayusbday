@@ -656,39 +656,56 @@ function renderCards(list, elId){
 renderCards(ANIME,'animeCards');
 renderCards(MANGA,'mangaCards');
 
-/* ---------------- word board (localstorage) ---------------- */
-const wordCloud=document.getElementById('wordCloud');
+/* ---------------- word board wit da supabase) ---------------- */
+const wordCloud = document.getElementById('wordCloud');
+
 async function loadWords(){
   try{
-    wordCloud.innerHTML='';
-    const words = [];
-    for(let i=0; i<localStorage.length; i++){
-      const key = localStorage.key(i);
-      if(key.startsWith('word:')){
-        words.push({key, val: localStorage.getItem(key)});
-      }
+    const { data: words, error } = await dbClient
+      .from('word_board')
+      .select('*')
+      .order('ts', { ascending: false });
+
+    if(error) throw error;
+
+    wordCloud.innerHTML = '';
+    if(!words || words.length === 0){
+      wordCloud.innerHTML = '<span style="color:var(--text-dim);font-size:13px;font-style:italic;">no words yet — add one!</span>';
+      return;
     }
-    if(words.length===0) return;
-    words.forEach(w=>{
-      const span=document.createElement('span');
-      span.className='word-pill';
-      span.textContent=w.val;
+
+    words.forEach(w => {
+      const span = document.createElement('span');
+      span.className = 'word-pill';
+      span.textContent = w.word;
       wordCloud.appendChild(span);
     });
-  }catch(e){}
+  }catch(e){
+    console.error(e);
+    wordCloud.innerHTML = '<span style="color:var(--text-dim);font-size:13px;">could not load words.</span>';
+  }
 }
 
 document.getElementById('wordAdd').addEventListener('click', async ()=>{
-  const input=document.getElementById('wordInput');
-  const val=input.value.trim();
+  const input = document.getElementById('wordInput');
+  const val = input.value.trim();
   if(!val) return;
-  const key='word:'+Date.now()+'-'+Math.floor(Math.random()*1000);
+  
   try{
-    localStorage.setItem(key, val);
-    input.value='';
+    const { error } = await dbClient
+      .from('word_board')
+      .insert([{ word: val, ts: Date.now() }]);
+
+    if(error) throw error;
+
+    input.value = '';
     loadWords();
-  }catch(e){}
+  }catch(e){
+    console.error(e);
+    alert('damn da word no work it error pls contact me doe');
+  }
 });
+
 loadWords();
 
 /* ---------------- gallery ---------------- */
